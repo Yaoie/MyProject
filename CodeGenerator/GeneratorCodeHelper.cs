@@ -19,7 +19,7 @@ namespace CodeGenerator
         /// <param name="tableName">表名称</param>
         /// <param name="tableDescription">表说明</param>
         /// <param name="columns">表字段</param>
-        public static void CodeGenerator(string tableName, string tableDescription, List<DbColumnInfo> columns, string fileType)
+        public static byte[] CodeGenerator(string tableName, string tableDescription, List<DbColumnInfo> columns, string fileType)
         {
             var dt = DateTime.Now;
             byte[] data;
@@ -71,17 +71,8 @@ namespace CodeGenerator
                     }
                 }
                 data = ms.ToArray();
-                if (data != null)
-                {
-                    var rootPath = "C:/codeGenerator/";
-                    var filePath = tableName + "-" + fileType + ".zip";
-                    WriteFile(filePath, rootPath, data);              
-                }
-                else
-                {
-                    Console.WriteLine($"{tableName}获取数据库字段失败");
-                }
             }
+            return data;
         }
         private static void WriteStream(ZipArchive zip, Assembly assembly, object obj, string tpl, string entryName)
         {
@@ -97,22 +88,7 @@ namespace CodeGenerator
                 }
             }
         }
-        public static void WriteFile(string fileName, string rootPath, byte[] buffer)
-        {
-            if (!Directory.Exists(rootPath))
-            {
-                Directory.CreateDirectory(rootPath);
-            }
-            string path = GetFilePath(fileName, rootPath); 
-            FileInfo file = new FileInfo(path);
-            FileStream fs = file.Create();
-            fs.Write(buffer, 0, buffer.Length);
-            fs.Close();
-        }
-        public static string GetFilePath(string fileName, string rootPath)
-        {
-            return rootPath + fileName;
-        }
+       
         private static string GetCodeType(string dataType, bool isNullable)
         {
             switch (dataType)

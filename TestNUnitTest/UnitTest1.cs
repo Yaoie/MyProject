@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.VisualBasic.FileIO;
 using Microsoft.VisualStudio.Web.CodeGeneration;
 using SqlSugar;
 
@@ -20,13 +22,23 @@ namespace TestNUnitTest
             this.sqlSugarClient = serviceProvider.GetService<ISqlSugarClient>();
         }
 
-        [Test]
-        public void Test2()
+        [TestCase("Students", "EntityFiles")]
+        public void CodeGenDown(string tableName, string fileType)
         {
             SqlSugarClient _sqlSugarClient =sqlSugarClient as SqlSugarClient;
             var columns = _sqlSugarClient.DbMaintenance.GetColumnInfosByTableName("Students", false);
-            CodeGenerator.GeneratorCodeHelper.CodeGenerator("Students","tests",columns, "EntityFiles");
-            Console.WriteLine("Hello world");
+            var  data =CodeGenerator.GeneratorCodeHelper.CodeGenerator(tableName, "tests",columns, fileType);
+            Assert.IsNotNull(data);
+            if (data != null)
+            {
+                var rootPath = "C:/codeGenerator/";
+                var filePath = tableName + "-" + fileType + ".zip";
+                Common.FileHelper.WriteFile(filePath, rootPath, data);
+            }
+            else
+            {
+                Console.WriteLine($"{tableName}获取数据库字段失败");
+            }
             Assert.Pass();
         }
     }
