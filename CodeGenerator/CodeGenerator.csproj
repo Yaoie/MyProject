@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="CrudTemplate\Dto\DTO.tpl" />
+    <None Remove="CrudTemplete\DTO\DTO.tpl" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="CrudTemplate\Dto\DTO.tpl" />
+    <EmbeddedResource Include="CrudTemplete\DTO\DTO.tpl" />
   </ItemGroup>
 
   <ItemGroup>
