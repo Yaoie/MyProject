@@ -1,0 +1,40 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WebApplication1.styles.css" asp-append-version="true" />
+    <style>
+        path {
+            fill: green;
+            stroke: #aaa;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <svg width="600" height="400">
+            <path transform="translate(20, 0)" />
+        </svg>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script>
+        var data = [[0, 20], [50,20], [50,100], [0,160]];
+        var lineGenerator = d3.line();
+        var pathString = lineGenerator(data);
+        console.log(pathString)
+        d3.select('path').attr('d', pathString);
+    </script>
+</body>
+</html>
+

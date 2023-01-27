@@ -1,0 +1,16 @@
+body {
+    font: 18px "Helvetica Neue";
+    font-weight: 300;
+    text-rendering: optimizeLegibility;
+}
+
+div.dataTables_wrapper {
+    width: 800px;
+    margin: auto;
+    padding: 0;
+}
+
+table.table-fit{
+    width: auto !important;
+    table-layout: auto !important;
+}

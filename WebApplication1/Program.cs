@@ -7,6 +7,9 @@ using System.Security.Claims;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder();
+builder.Services.AddRazorPages();
+builder.Services.AddControllersWithViews();
+builder.Services.AddMvc().AddRazorRuntimeCompilation();
 //获取JWT参数，并注入到服务容器
 var jwtConfig = new JWTConfig();
 builder.Configuration.GetSection("JWT").Bind(jwtConfig);
@@ -26,6 +29,8 @@ builder.Services
     });
 
 var app = builder.Build();
+app.UseHttpsRedirection();
+app.UseStaticFiles();
 //使用身份认证和授权的中间件
 app.UseAuthentication();
 app.UseAuthorization();
@@ -86,9 +91,10 @@ app.MapPost("/login", [AllowAnonymous] (ILogger<Program> logger, LoginModel logi
     {
         return "username or password is error";
     }
-}); 
+});
 #endregion
-
+app.MapDefaultControllerRoute();
+app.MapRazorPages();
 app.Run();
 //登录实体
 public class LoginModel

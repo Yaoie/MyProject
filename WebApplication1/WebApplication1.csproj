@@ -11,15 +11,97 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\js\mytimeknots\timeknotsplus.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\js\timeknots\.vs\VSWorkspaceState.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Pages\Students\" />
+    <Folder Include="wwwroot\js\timeknots\.git\objects\info\" />
+    <Folder Include="wwwroot\js\timeknots\.git\refs\tags\" />
+    <Folder Include="wwwroot\js\timeknots\.vs\timeknots\v17\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\js\alstimeknots\timeknots_datatable\datatable\app.js" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_datatable\datatable\bootstrap-5.0.2\bootstrap.min.css.map" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_datatable\datatable\bootstrap-5.0.2\bootstrap.min.js" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_datatable\datatable\bootstrap-5.0.2\bootstrap.min.js.map" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_datatable\datatable\data.js" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_datatable\datatable\DataTable\datatables.js" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_datatable\datatable\DataTable\datatables.min.js" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_datatable\datatable\jQuery-3.6.0\jquery-3.6.0.js" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_datatable\datatable\jQuery-3.6.0\jquery-3.6.0.min.js" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_datatable\datatable\utils.js" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_datatable\LICENSE" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_datatable\README.md" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_datatable\src\addLabel.js" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_datatable\src\currentArrow.js" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_datatable\src\d3.license" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_datatable\src\d3.v2.min.js" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_datatable\src\d3onevent.js" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_datatable\src\down-arrow.svg" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_datatable\src\timeknots-min.js" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_datatable\src\timeknots.js" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_datatable\src\timeknotsplus copy.js" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_datatable\src\timeknotsplus.js" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_datatable\src\timeknotsplus_template.js" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_datatable\src\timeknotsprogress.js" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_datatable\src\timeknotstooltip.js" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_demo\example plus\down-arrow.svg" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_demo\LICENSE" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_demo\README.md" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_demo\src\d3.license" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_demo\src\d3.v2.min.js" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_demo\src\d3onevent.js" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_demo\src\timeknots-min.js" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_demo\src\timeknots.js" />
+    <None Include="wwwroot\js\alstimeknots\timeknots_demo\src\timeknotsplus.js" />
+    <None Include="wwwroot\js\mytimeknots\timeknotsplus.js" />
+    <None Include="wwwroot\js\timeknots\.git\config" />
+    <None Include="wwwroot\js\timeknots\.git\description" />
+    <None Include="wwwroot\js\timeknots\.git\HEAD" />
+    <None Include="wwwroot\js\timeknots\.git\hooks\applypatch-msg.sample" />
+    <None Include="wwwroot\js\timeknots\.git\hooks\commit-msg.sample" />
+    <None Include="wwwroot\js\timeknots\.git\hooks\fsmonitor-watchman.sample" />
+    <None Include="wwwroot\js\timeknots\.git\hooks\post-update.sample" />
+    <None Include="wwwroot\js\timeknots\.git\hooks\pre-applypatch.sample" />
+    <None Include="wwwroot\js\timeknots\.git\hooks\pre-commit.sample" />
+    <None Include="wwwroot\js\timeknots\.git\hooks\pre-merge-commit.sample" />
+    <None Include="wwwroot\js\timeknots\.git\hooks\pre-push.sample" />
+    <None Include="wwwroot\js\timeknots\.git\hooks\pre-rebase.sample" />
+    <None Include="wwwroot\js\timeknots\.git\hooks\pre-receive.sample" />
+    <None Include="wwwroot\js\timeknots\.git\hooks\prepare-commit-msg.sample" />
+    <None Include="wwwroot\js\timeknots\.git\hooks\push-to-checkout.sample" />
+    <None Include="wwwroot\js\timeknots\.git\hooks\update.sample" />
+    <None Include="wwwroot\js\timeknots\.git\index" />
+    <None Include="wwwroot\js\timeknots\.git\info\exclude" />
+    <None Include="wwwroot\js\timeknots\.git\logs\HEAD" />
+    <None Include="wwwroot\js\timeknots\.git\logs\refs\heads\master" />
+    <None Include="wwwroot\js\timeknots\.git\logs\refs\remotes\origin\HEAD" />
+    <None Include="wwwroot\js\timeknots\.git\objects\pack\pack-50e84de6d11407b0b75fecd024024400b773b82d.idx" />
+    <None Include="wwwroot\js\timeknots\.git\objects\pack\pack-50e84de6d11407b0b75fecd024024400b773b82d.pack" />
+    <None Include="wwwroot\js\timeknots\.git\packed-refs" />
+    <None Include="wwwroot\js\timeknots\.git\refs\heads\master" />
+    <None Include="wwwroot\js\timeknots\.git\refs\remotes\origin\HEAD" />
+    <None Include="wwwroot\js\timeknots\LICENSE" />
+    <None Include="wwwroot\js\timeknots\README.md" />
+    <None Include="wwwroot\js\timeknots\src\d3.license" />
+    <None Include="wwwroot\js\timeknots\src\d3.v2.min.js" />
+    <None Include="wwwroot\js\timeknots\src\timeknots-min.js" />
+    <None Include="wwwroot\js\timeknots\src\timeknots.js" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.0">
       <PrivateAssets>all</PrivateAssets>

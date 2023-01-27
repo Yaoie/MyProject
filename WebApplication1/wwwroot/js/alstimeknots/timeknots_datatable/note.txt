@@ -1,0 +1,15 @@
+no current parameter
+current flag
+    - true 
+        insert current time
+    - false
+        no progress show
+
+tooltip
+    - display attributes
+        id
+        name - stage name
+        done - boolean
+        overdue - boolean
+        target - date
+        actual - date/null

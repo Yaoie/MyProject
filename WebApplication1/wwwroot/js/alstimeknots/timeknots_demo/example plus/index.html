@@ -1,0 +1,152 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <script src="../src/d3.v2.min.js" type="application/javascript"></script>
+  <script src="../src/timeknots.js" type="application/javascript"></script>
+  <script src="../src/timeknotsplus.js" type="application/javascript"></script>
+  <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css" rel="stylesheet">
+  <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
+  <style>
+    body {
+      font: 18px "Helvetica Neue";
+      font-weight: 300;
+      text-rendering: optimizeLegibility;
+      margin-left: 20px;
+    }
+  </style>
+</head>
+
+<body>
+    <!-- <div style="display: none;">
+    <svg id="svg-template-current">
+      <g>
+        <path d="M32,16.016l-5.672-5.664c0,0-3.18,3.18-6.312,6.312V0h-8.023v16.664l-6.32-6.32L0,16.016L16,32
+			L32,16.016z" />
+      </g>
+    </svg>
+  </div> -->
+  <div class="fluid-row">
+    <div class="well span11 pagination-centered">
+      <h1>Demos using timeknots</h1>
+      <h5><a href='https://github.com/alangrafu/timeknots'>https://github.com/alangrafu/timeknots</a></h5>
+    </div>
+  </div>
+  <div class="fluid-row">
+    <div class="span3">
+      <h2>TimeKnotsPlus Demo 1</h2>
+      <h5></h5>
+      <div id="timeline1" style="width:1000px;"></div>
+      <h2>TimeKnotsPlus Demo 2</h2>
+      <div id="timeline2" style="width:800px;"></div>
+    </div>
+    <!-- <div class="span6">
+      <h2>My schedule</h2>
+      <h5>Imaginary schedule in a vertical layout</h5>
+      <div id="timeline3" style="width:200px;height: 450px;"></div>
+    </div> -->
+  </div>
+  <script type="text/javascript">
+    var uuid = () => {
+      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+      });
+    }
+
+    var events1 = [
+      {
+        code: uuid(), name: "Stage 3", date: "2025-05-15", actual: "", done: false,
+        label: { title: "Stage 3", body: "Curtailed Check" }, background: "#dfdede",
+        callback: { fn: () => { alert("Stage 3"); } }
+      },
+      {
+        code: uuid(), name: "Stage 1", date: "2018-03-31", actual: "2018-03-31", done: true,
+        label: { title: "Stage 1", body: "Submission Review" },
+        callback: { fn: (a) => { alert("Stage 1 : " + a); }, args: ["parameter 1"] }
+      },
+      {
+        code: uuid(), name: "Stage 2", date: "2022-07-19", actual: "", done: false,
+        label: { title: "Stage 2", body: "Comment to Applicant" },
+        callback: { fn: (a, b) => { alert("Stage 2 : " + a + ", " + b); }, args: ["parameter 1", "parameter 2"] }
+      },
+      {
+        code: uuid(), name: "Reply to Applicant", date: "2028-11-21", actual: "", done: false,
+        label: { body: "Reply to Applicant" }, background: "#dfdede"
+      },
+    ];
+    var cfg1 = {
+      radius: 25,
+      radiusCurrent: 10,
+      color: "#a29890",
+      colorPassed: "#00ff7f",
+      width: 900,
+      height: 300,
+      addLabels: true,
+      dateFormat: "%Y-%m-%d",
+      labelFormat: "%Y",
+      showTooltip: true,
+      // svgTemplateHref: "down-arrow.svg#Capa_1",
+      // svgTemplateId: "#template2",
+      // svgTemplateId: "#svg-template-current",
+      status: {
+        DONE_NOTOVERDUE: { label: "done & not overdue", color: "#2741cf" },
+        // DONE_OVERDUE: { label: "done & overdue", color: "#ff48c4" },
+        NOTDONE_NOTOVERDUE: { label: "not done & not overdue", color: "#625d5a" },
+        // NOTDONE_OVERDUE: { label: "not done & overdue", color: "#ff3f3f" },
+        CURRENT: { label: "now", color: "#50adf4" }
+      }
+    };
+
+    TimeKnotsPlus.draw("#timeline1", events1, cfg1);
+
+    var events2 = [
+      {
+        code: uuid(), name: "Stage 5", date: "2030-11-05 00:00:01", actual: "2022-07-01 00:00:01", done: true,
+        label: { title: "Stage 5", body: "Curtailed Check Curtailed Check Curtailed Check" },
+        callback: { fn: () => { alert("Stage 5"); } }
+      },
+      {
+        code: uuid(), name: "Stage 4", date: "2028-05-15 12:11:00", actual: "", done: false,
+        label: { title: "Stage 4", body: "Curtailed CheckCurtailedCheck Curtailed Check" },
+        callback: { fn: () => { alert("Stage 4"); } }
+      },
+      {
+        code: uuid(), name: "Stage 3", date: "2022-01-25 12:11:00", actual: "2022-6-10 12:11:00", done: true,
+        label: { title: "Stage 3", body: "Curtailed Check" },
+        callback: { fn: () => { alert("Stage 3"); } }
+      },
+      {
+        code: uuid(), name: "Stage 1", date: "2015-03-31 12:11:00", actual: "2015-03-31 12:11:00", done: true,
+        label: { title: "Stage 1", body: "Submission Review" },
+        callback: { fn: (a) => { alert("Stage 1 : " + a); }, args: ["parameter 1"] }
+      },
+      {
+        code: uuid(), name: "Stage 2", date: "2019-07-19 12:11:00", actual: "", done: false,
+        label: { title: "Stage 2", body: "Comment to Applicant" },
+        callback: { fn: (a, b) => { alert("Stage 2 : " + a + ", " + b); }, args: ["parameter 1", "parameter 2"] }
+      },
+      {
+        code: uuid(), name: "Reply to Applicant", date: "2035-11-21 18:11:00", actual: "", done: false,
+        label: { body: "Reply to Applicant" }, background: "#00fff3"
+      },
+    ];
+    var cfg2 = {
+      radius: 28,
+      radiusCurrent: 12,
+      color: "#06a4d5",
+      colorCurrent: "#cefa05",
+      width: 700,
+      height: 350,
+      addLabels: true,
+      dateFormat: "%Y-%m-%d %H:%M:%S",
+      labelFormat: "%Y-%m-%d %H:%M:%S",
+      showTooltip: true
+    };
+
+    TimeKnotsPlus.draw("#timeline2", events2, cfg2);
+  </script>
+
+</body>
+
+</html>

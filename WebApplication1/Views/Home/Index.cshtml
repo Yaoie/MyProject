@@ -1,8 +1,94 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    Layout = null;
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WebApplication1.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="container">
+        <div id="timeline1"></div>
+        <div id="timeline2"></div>
+    </div>
+     
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    
+    @*<script src="~/js/d3/d3-selection.js"></script>*@
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/timeknots/src/d3.v2.min.js"></script>
+    <script src="~/js/timeknots/src/timeknots.js"></script>
+    <script src="~/js/mytimeknots/timeknotsplus.js"></script>
+    <script> 
+        var kurbickFilms = [{ name: "Day of the Fight", date: "1951-04-26", img: "http://upload.wikimedia.org/wikipedia/en/thumb/c/c4/Day_of_the_Fight_title.jpg/215px-Day_of_the_Fight_title.jpg" },
+        { name: "The Seafarers", date: "1953-10-15", img: "http://upload.wikimedia.org/wikipedia/en/thumb/6/6c/Seafarers_title.jpg/225px-Seafarers_title.jpg" },
+        { name: "Lolita (1962 film)", date: "1962-06-13", img: "http://upload.wikimedia.org/wikipedia/en/thumb/7/72/LolitaPoster.jpg/215px-LolitaPoster.jpg" },
+        { name: "Fear and Desire", date: "1953-03-31", img: "http://upload.wikimedia.org/wikipedia/en/f/f7/Fear_and_Desire_Poster.jpg" },
+        { name: "Paths of Glory", date: "1957-12-25", img: "http://upload.wikimedia.org/wikipedia/en/thumb/b/bc/PathsOfGloryPoster.jpg/220px-PathsOfGloryPoster.jpg" },
+        { name: "A Clockwork Orange (film)", date: "1971-12-19", img: "http://upload.wikimedia.org/wikipedia/en/thumb/4/48/Clockwork_orangeA.jpg/220px-Clockwork_orangeA.jpg" },
+        { name: "Killer's Kiss", date: "1955-09-28", img: "http://upload.wikimedia.org/wikipedia/en/thumb/a/a6/KillersKissPoster.jpg/220px-KillersKissPoster.jpg" }
+        ];
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+        TimeKnots.draw("#timeline1", kurbickFilms, { dateFormat: "%B %Y", color: "#696", width: 500, showLabels: true, labelFormat: "%Y" });
+
+        var events = [
+            {
+                code: "1", name: "Stage 5", date: "2030-11-05 00:00:01", actual: "2022-07-01 00:00:01", done: true,
+                label: { title: "Stage 5", body: "Curtailed Check Curtailed Check Curtailed Check" },
+                callback: { fn: () => { alert("Stage 5"); } }
+            },
+            {
+                code: "2", name: "Stage 4", date: "2028-05-15 12:11:00", actual: "", done: false,
+                label: { title: "Stage 4", body: "Curtailed CheckCurtailedCheck Curtailed Check" },
+                callback: { fn: () => { alert("Stage 4"); } }
+            },
+            {
+                code:"3", name: "Stage 3", date: "2025-01-25 12:11:00", actual: "2022-6-10 12:11:00", done: true,
+                label: { title: "Stage 3", body: "Curtailed Check" },
+                callback: { fn: () => { alert("Stage 3"); } }
+            },
+            {
+                code: "4", name: "Stage 1", date: "2015-03-31 12:11:00", actual: "2015-03-31 12:11:00", done: true,
+                label: { title: "Stage 1", body: "Submission Review" },
+                callback: { fn: (a) => { alert("Stage 1 : " + a); }, args: ["parameter 1"] }
+            },
+            {
+                code: "5", name: "Stage 2", date: "2019-07-19 12:11:00", actual: "", done: false,
+                label: { title: "Stage 2", body: "Comment to Applicant" },
+                callback: { fn: (a, b) => { alert("Stage 2 : " + a + ", " + b); }, args: ["parameter 1", "parameter 2"] }
+            },
+            {
+                code: "6", name: "Reply to Applicant", date: "2035-11-21 18:11:00", actual: "", done: false,
+                label: { body: "Reply to Applicant" }, background: "#00fff3"
+            },
+        ];
+        var cfg = {
+            radius: 20,
+            color: "#06a4d5",
+            lineWidth: 5,
+            width: 600,
+            height: 300,
+            dateFormat: "%Y-%m-%d %H:%M:%S",
+            labelFormat: "%Y-%m-%d %H:%M:%S",
+            showTooltip: true,
+            barMode: false,
+            cfgNonBarMode: {
+                addLabels: true,
+                // showCenterText: true,
+                // showCurrentArrow: false,
+                showCircularProgressBar: true,
+                // colorProgressCircularBar: "#ff008d",
+                // highlightCurrent: false,
+            }
+        };
+        TimeKnotsPlus.draw(`#timeline2`, events, cfg);
+    </script>
+</body>
+</html>
+

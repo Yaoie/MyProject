@@ -17,6 +17,14 @@ namespace WebApplication1.Controllers
         {
             return View();
         }
+        public IActionResult D3()
+        {
+            return View();
+        }
+        public IActionResult D3Transformation()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {

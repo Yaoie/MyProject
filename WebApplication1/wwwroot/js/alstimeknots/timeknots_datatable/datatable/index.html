@@ -1,0 +1,59 @@
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <script src="./jQuery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="../src/d3.v2.min.js" type="application/javascript"></script>
+  <script src="../src/timeknots.js" type="application/javascript"></script>
+  <script src="../src/timeknotsplus.js" type="application/javascript"></script>
+
+  <link href="./bootstrap-5.0.2/bootstrap.min.css" rel="stylesheet">
+  <script src="./bootstrap-5.0.2/bootstrap.min.js" type="application/javascript"></script>
+
+  <script src="./DataTable/datatables.min.js" type="application/javascript"></script>
+  <link href="./DataTable/datatables.min.css" rel="stylesheet">
+  <link href="./index.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- <div style="margin: auto;">
+    <h5>Data Table Demo</h5> -->
+    <table id="myTable" class="table-fit display">
+      <thead>
+        <tr>
+          <th>Project ID</th>
+          <th>Title</th>
+          <th>Progress</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  <!-- </div> -->
+  <!-- </div> -->
+  <script type="text/javascript" src="./utils.js"></script>
+  <script type="text/javascript" src="./data.js"></script>
+  <script src="./app.js" type="application/javascript"></script>
+  <script type="text/javascript">
+
+    // var xh_req = new XMLHttpRequest();
+    // xh_req.open("GET", "./data.json"); // No `false`
+    // xh_req.send(null);
+    // xh_req.onload = () => {
+    //   const data = JSON.parse(xh_req.responseText);
+    //   console.log(JSON.stringify(data));
+    // };
+    // xh_req.onerror = error => {
+    //   console.log('error');
+    // };
+
+    $(document).ready(function () {
+      $('#myTable').DataTable({
+        "autoWidth": true
+      });
+    });
+  </script>
+
+</body>
+
+</html>

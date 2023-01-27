@@ -1,0 +1,64 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WebApplication1.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="container">
+        <div id="timeline1"></div>
+        <div id="timeline2"></div>
+        <ul id="list">
+            <li></li>
+            <li></li>
+        </ul>
+        <input type="button" value="remove" onclick="remove()"/>
+        <p></p>
+        <div id="div_datum"></div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @*<script src="~/js/d3/d3-selection.js"></script>*@
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/timeknots/src/d3.v2.min.js"></script>
+    <script src="~/js/timeknots/src/timeknots.js"></script> 
+    <script>
+        var arr = [10, 20, 30, 25, 15]
+        var obj = d3.select("#list").selectAll("li").data([10, 20, 30, 25, 15])
+        console.log(obj)
+        obj = obj.text(function(d){
+            return d;
+        });
+        console.log(obj);
+        obj = obj.enter()
+           .append("li")
+           .text(function (d) { return "This is dynamically created element and the value is " + d; });
+        console.log(obj);
+        function remove(){
+            var obj = d3.selectAll("li").data([1, 2, 3]).text(d=>d).exit().remove()
+            //var update = obj.data([1,2,3]).text(d=>d) //更新text
+            //var exit = update.exit().remove() 
+            //console.log(obj)
+        }
+        d3.select("p")
+            .datum(50)
+            .text(function (d) {
+                return "Used existing paragraph element and the data " + d + " is assigned.";
+            });
+        d3.select("#div_datum")
+            .datum(100)
+            .append("p")
+            .text(function (d) {
+                return "Created new paragraph element and the data " + d + " is assigned.";
+            });
+    </script>
+</body>
+</html>
+
