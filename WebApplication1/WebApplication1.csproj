@@ -28,6 +28,25 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\cssdev\ch10\.gitignore" />
+    <None Include="wwwroot\cssdev\ch10\css\homepage.md" />
+    <None Include="wwwroot\cssdev\ch10\docs\kss-assets\kss.js" />
+    <None Include="wwwroot\cssdev\ch10\docs\kss-assets\kss.scss" />
+    <None Include="wwwroot\cssdev\ch10\docs\kss-assets\prettify.js" />
+    <None Include="wwwroot\cssdev\ch10\docs\kss-assets\sample-inline.svg" />
+    <None Include="wwwroot\cssdev\ch10\docs\kss-assets\sample.svg" />
+    <None Include="wwwroot\cssdev\ch10\docs\kss-assets\scrollspy.js" />
+    <None Include="wwwroot\cssdev\ch10\js\docs.js" />
+    <None Include="wwwroot\cssdev\ch10\README.md" />
+    <None Include="wwwroot\cssdev\ch13\fontfaceobserver.js" />
+    <None Include="wwwroot\cssdev\ch15\images\calendar.svg" />
+    <None Include="wwwroot\cssdev\ch15\images\home.svg" />
+    <None Include="wwwroot\cssdev\ch15\images\members.svg" />
+    <None Include="wwwroot\cssdev\ch15\images\star.svg" />
+    <None Include="wwwroot\cssdev\ch16\images\calendar.svg" />
+    <None Include="wwwroot\cssdev\ch16\images\home.svg" />
+    <None Include="wwwroot\cssdev\ch16\images\members.svg" />
+    <None Include="wwwroot\cssdev\ch16\images\star.svg" />
     <None Include="wwwroot\lib\jQuery-File-Upload-master\.github\FUNDING.yml" />
     <None Include="wwwroot\lib\jQuery-File-Upload-master\.github\workflows\test.yml" />
     <None Include="wwwroot\lib\jQuery-File-Upload-master\.gitignore" />
