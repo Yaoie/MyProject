@@ -3,7 +3,7 @@
     "WebApplication1": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "https://localhost:7102/js/timeknots/example/index.html;https://localhost:7102/",
+      "launchUrl": "https://localhost:7102/File/Test",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

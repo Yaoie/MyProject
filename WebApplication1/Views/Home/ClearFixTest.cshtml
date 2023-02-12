@@ -1,0 +1,51 @@
+﻿@{
+    Layout = null;
+}
+<html>
+    <head>
+        <style>
+        .container {
+            width: 500px;
+            background-color: black;
+            /*clear: both;*/
+        }
+
+          .clearfix:after {
+           visibility    : hidden;
+          display: block;
+          font-size: 0;
+          content: " ";
+          clear: both;
+          height: 2;
+        }
+        .left {
+            width: 200px;
+            height: 300px;
+            background-color: red;
+            float: left;
+        }
+
+        .right {
+            width: 200px;
+            height: 200px;
+            background-color: green;
+            float: right;
+        }
+
+        .footer {
+            width: 400px;
+            height: 50px;
+            background-color: blue;
+        }
+        </style>
+
+    </head>
+    <body>
+    <div class="container clearfix">
+        <!-- black -->
+        <div class="left">left</div> <!-- red -->
+        <div class="right">right</div> <!-- green -->
+    </div>
+    @*<div class="footer">footer</div> <!-- blue -->*@
+    </body>
+</html>
