@@ -15,21 +15,54 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="wwwroot\js\timeknots\.vs\VSWorkspaceState.json" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Pages\Students\" />
-    <Folder Include="wwwroot\js\timeknots\.git\objects\info\" />
-    <Folder Include="wwwroot\js\timeknots\.git\refs\tags\" />
-    <Folder Include="wwwroot\js\timeknots\.vs\timeknots\v17\" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\.github\FUNDING.yml" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\.github\workflows\test.yml" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\.gitignore" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\docker-compose.yml" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\js\cors\jquery.postmessage-transport.js" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\js\cors\jquery.xdr-transport.js" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\js\demo.js" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\js\jquery.fileupload-audio.js" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\js\jquery.fileupload-image.js" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\js\jquery.fileupload-process.js" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\js\jquery.fileupload-ui.js" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\js\jquery.fileupload-validate.js" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\js\jquery.fileupload-video.js" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\js\jquery.fileupload.js" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\js\jquery.iframe-transport.js" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\js\vendor\jquery.ui.widget.js" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\README.md" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\SECURITY.md" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\server\gae-python\app.yaml" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\server\gae-python\main.py" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\server\php\.dockerignore" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\server\php\Dockerfile" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\server\php\files\.gitignore" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\server\php\files\.htaccess" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\server\php\index.php" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\server\php\php.ini" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\server\php\UploadHandler.php" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\test\unit.js" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\test\vendor\chai.js" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\test\vendor\mocha.js" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\VULNERABILITIES.md" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\wdio\.eslintrc.js" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\wdio\.prettierrc.js" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\wdio\conf\chrome.js" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\wdio\conf\firefox.js" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\wdio\hooks\index.js" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\wdio\reports\.gitignore" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\wdio\test\pages\file-upload.js" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\wdio\test\specs\01-file-upload.js" />
+    <None Include="wwwroot\lib\jQuery-File-Upload-master\wdio\wdio.conf.js" />
     <None Include="wwwroot\js\alstimeknots\timeknots_datatable\datatable\app.js" />
     <None Include="wwwroot\js\alstimeknots\timeknots_datatable\datatable\bootstrap-5.0.2\bootstrap.min.css.map" />
     <None Include="wwwroot\js\alstimeknots\timeknots_datatable\datatable\bootstrap-5.0.2\bootstrap.min.js" />
@@ -65,32 +98,6 @@
     <None Include="wwwroot\js\alstimeknots\timeknots_demo\src\timeknots.js" />
     <None Include="wwwroot\js\alstimeknots\timeknots_demo\src\timeknotsplus.js" />
     <None Include="wwwroot\js\mytimeknots\timeknotsplus.js" />
-    <None Include="wwwroot\js\timeknots\.git\config" />
-    <None Include="wwwroot\js\timeknots\.git\description" />
-    <None Include="wwwroot\js\timeknots\.git\HEAD" />
-    <None Include="wwwroot\js\timeknots\.git\hooks\applypatch-msg.sample" />
-    <None Include="wwwroot\js\timeknots\.git\hooks\commit-msg.sample" />
-    <None Include="wwwroot\js\timeknots\.git\hooks\fsmonitor-watchman.sample" />
-    <None Include="wwwroot\js\timeknots\.git\hooks\post-update.sample" />
-    <None Include="wwwroot\js\timeknots\.git\hooks\pre-applypatch.sample" />
-    <None Include="wwwroot\js\timeknots\.git\hooks\pre-commit.sample" />
-    <None Include="wwwroot\js\timeknots\.git\hooks\pre-merge-commit.sample" />
-    <None Include="wwwroot\js\timeknots\.git\hooks\pre-push.sample" />
-    <None Include="wwwroot\js\timeknots\.git\hooks\pre-rebase.sample" />
-    <None Include="wwwroot\js\timeknots\.git\hooks\pre-receive.sample" />
-    <None Include="wwwroot\js\timeknots\.git\hooks\prepare-commit-msg.sample" />
-    <None Include="wwwroot\js\timeknots\.git\hooks\push-to-checkout.sample" />
-    <None Include="wwwroot\js\timeknots\.git\hooks\update.sample" />
-    <None Include="wwwroot\js\timeknots\.git\index" />
-    <None Include="wwwroot\js\timeknots\.git\info\exclude" />
-    <None Include="wwwroot\js\timeknots\.git\logs\HEAD" />
-    <None Include="wwwroot\js\timeknots\.git\logs\refs\heads\master" />
-    <None Include="wwwroot\js\timeknots\.git\logs\refs\remotes\origin\HEAD" />
-    <None Include="wwwroot\js\timeknots\.git\objects\pack\pack-50e84de6d11407b0b75fecd024024400b773b82d.idx" />
-    <None Include="wwwroot\js\timeknots\.git\objects\pack\pack-50e84de6d11407b0b75fecd024024400b773b82d.pack" />
-    <None Include="wwwroot\js\timeknots\.git\packed-refs" />
-    <None Include="wwwroot\js\timeknots\.git\refs\heads\master" />
-    <None Include="wwwroot\js\timeknots\.git\refs\remotes\origin\HEAD" />
     <None Include="wwwroot\js\timeknots\LICENSE" />
     <None Include="wwwroot\js\timeknots\README.md" />
     <None Include="wwwroot\js\timeknots\src\d3.license" />
