@@ -1,0 +1,189 @@
+﻿<style>
+
+</style>
+<div class="container">
+
+    <div class="text">
+        使用 Javascript 识别文件 MIME TYPE 类型
+    </div>
+
+    <div class="demo-contain">
+        <section class="output-contain output-contain--extension">
+            <h2>1. 使用 e.target.files[0].type 来获取文件类型（Read file type using e.target.files[0].type）</h2>
+            <input type="file" class="control-extension" />
+            <div class="output">
+                <dl>
+                    <dt>File Type: </dt>
+                    <dd class=""></dd>
+                </dl>
+            </div>
+        </section>
+
+        <section class="output-contain output-contain--mn">
+            <h2>2. 通过 FileReader.readAsArrayBuffer 来读取文件二进制数据，从而匹配文件类型。(Read file type using file signature/magic number)</h2>
+            <input type="file" class="control-magic-number" />
+            <div class="output">
+                <dl>
+                    <dt>&bull;&nbsp;Bytes (decimal): </dt>
+                    <dd class="bytes-decimal"></dd>
+                </dl>
+                <dl>
+                    <dt>&bull;&nbsp;Bytes (hex): </dt>
+                    <dd class="bytes-hex"></dd>
+                </dl>
+                <dl>
+                    <dt>&bull;&nbsp;File MIME TYPE: </dt>
+                    <dd class="file-type"></dd>
+                </dl>
+            </div>
+        </section>
+
+        <section class="file-signatures__contain">
+            <table>
+                <thead>
+                    <tr>
+                        <th>file extension</th>
+                        <th>file signature</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- JPG/JPEG -->
+                    <tr>
+                        <td rowspan="4">image/jpeg</td>
+                        <td>FF D8 FF E0</td>
+                    </tr>
+                    <tr>
+                        <td>FF D8 FF E1</td>
+                    </tr>
+                    <tr>
+                        <td>FF D8 FF E2</td>
+                    </tr>
+                    <tr>
+                        <td>FF D8 FF E3</td>
+                    </tr>
+                    <!-- PNG -->
+                    <tr>
+                        <td>image/png</td>
+                        <td>89 50 4E 47 0D 0A 1A 0A</td>
+                    </tr>
+                    <!-- GIF -->
+                    <tr>
+                        <td rowspan="2">image/gif</td>
+                        <td>47 49 46 38 37 61</td>
+                    </tr>
+                    <tr>
+                        <td>47 49 46 38 39 61</td>
+                    </tr>
+                    <!-- AVI -->
+                    <tr>
+                        <td>video/avi</td>
+                        <td>52 49 46 46 00 00 00 00 41 56 49 20</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="text text-info">
+                如果想要测试 avi 文件，需要相对较小的样本（比如这里：<a href="http://www.engr.colostate.edu/me/facil/dynamics/avis.htm">High Speed Camera Sample AVI's</a>）。原因是，比如说你从硬盘的哪个角落翻出一部电影来，1 个 G，2 个 G，以至于几个 G，通过  input[type="file"] 来提取文件流，需要对文件 （BLOB） 进行裁切（slice）操作，不然基本就炸。
+            </div>
+        </section>
+    </div>
+</div>
+@section Scripts{
+<script>
+    ; ((win, doc, $) => {
+        'use strict'
+
+        let $outputE = $('section.output-contain--extension .output')
+            , $outputMN = $('section.output-contain--mn .output')
+            // control to read MIME TYPE using file extension
+            , $controlE = $('input.control-extension')
+            // control to read MIME TYPE using MAGIC NUMBER
+            , $controlMN = $('input.control-magic-number')
+            // decimal bytes output
+            , $bytesDecimal = $('.bytes-decimal', $outputMN)
+            // hex bytes output
+            , $bytesHex = $('.bytes-hex', $outputMN)
+            , $fileType = $('.file-type', $outputMN)
+
+        $controlE.on('change', (e) => {
+            $('dl dd', $outputE).text(e.target.files[0].type)
+        })
+
+        const handleFileTYpe = (view) => {
+            
+            let first4Bytes = view.getUint32(0, false);
+            let second4Bytes = view.getUint32(4,false);
+            let first4BytesHex = Number(first4Bytes).toString(16).toUpperCase()
+           let second4BytesHex = Number(second4Bytes).toString(16).toUpperCase()
+           debugger
+            var count = 0
+            while (count < 4) {
+                var int8 = view.getUint8(count, false)
+                count++
+            }
+
+            // show the decimal value of bytes
+            $bytesDecimal.text(first4Bytes)
+            // show the hex value of bytes
+            $bytesHex.text(first4BytesHex)
+            console.log(first4BytesHex)
+                console.log(second4BytesHex)
+            switch (first4BytesHex) {
+                case 'FFD8FFE0':
+                case 'FFD8FFE1':
+                case 'FFD8FFE2':
+                case 'FFD8FFE3':
+                    $fileType.text('image/jpeg'); break;
+                case '89504E47':
+                    $fileType.text('image/png'); break;
+                case '47494638':
+                    $fileType.text('image/gif'); break;
+                case '52494646':
+                    $fileType.text('video/avi'); break;
+                default:
+                    $fileType.text('undefined'); break;
+            }
+        }
+
+        const handleFileType = (file) => {
+            let FR = new FileReader()
+            FR.onload = (e) => {
+                debugger
+                let af = e.target.result
+                    , view = new DataView(af);
+
+                /* for testing purpose START */
+                /*let uint8 = new Uint8Array(af)
+                    , bytesFromUint8 = uint8.subarray(0, 4);
+
+                let uint16 = new Uint16Array(af)
+                    , bytesFromUint16 = uint16.subarray(0, 2);
+
+                let uint32 = new Uint32Array(af)
+                    , bytesFromUint32 = uint32.subarray(0, 1);
+
+                console.log('uint8: ', bytesFromUint8.reduce((hex, decimal) => hex + Number(decimal).toString(16) + ' ', ' '))
+                console.log('uint16: ', bytesFromUint16.reduce((hex, decimal) => hex + Number(decimal).toString(16) + ' ', ' '))
+                console.log('uint32: ', bytesFromUint32.reduce((hex, decimal) => hex + Number(decimal).toString(16) + ' ', ' '))*/
+                /* for testing purpose END */
+
+                handleFileTYpe(view);
+            }
+            FR.readAsArrayBuffer(file)
+        }
+
+        $controlMN.on('change', (e) => {
+            handleFileType(e.target.files[0])
+        })
+
+    })(window, document, jQuery)
+
+const littleEndian = (() => {
+  const buffer = new ArrayBuffer(2);
+  new DataView(buffer).setInt16(0, 256, true /* 小端对齐 */);
+  // Int16Array 使用平台的字节序。
+  return new Int16Array(buffer)[0] === 256;
+})();
+console.log(littleEndian); // true 或 false
+</script>
+}

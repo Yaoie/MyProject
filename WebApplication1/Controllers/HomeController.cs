@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Common;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using WebApplication1.Models;
 
@@ -22,6 +23,22 @@ namespace WebApplication1.Controllers
             return View();
         }
         public IActionResult D3Transformation()
+        {
+            return View();
+        }
+        public IActionResult CreatePdf()
+        {
+            PdfHelper pdfHelper = new PdfHelper();
+            pdfHelper.CreatePdf();
+            string content = pdfHelper.ReadPdf();
+            ViewBag.Content = content;
+            return View();
+        }
+        public IActionResult XssTest()
+        {
+            return View();
+        }
+        public IActionResult ClearFixTest()
         {
             return View();
         }
