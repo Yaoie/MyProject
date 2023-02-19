@@ -3,7 +3,7 @@
     "WebApplication1": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "https://localhost:7102/Home/FileUploadTest",
+      "launchUrl": "https://localhost:7102/Home/CustomerTag",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
