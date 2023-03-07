@@ -1,6 +1,8 @@
 ﻿using Common;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System.Diagnostics;
+using System.Linq.Expressions;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -64,5 +66,77 @@ namespace WebApplication1.Controllers
         {
             return Json(new { files = new List<Object>() { new { name = "test" } } });
         }
+        [HttpGet]
+        public IActionResult ExpressionTest()
+        {
+            Expression<Func<int, int>> expression = (int a) => a * a;
+            var lambda = expression.Compile();
+            var el = expression.Parameters.Single();
+            ViewData["lambdaResult"] = lambda(5);
+            String str = "hell9";
+            _logger.LogInformation("is :"+str.Equals("hell9").ToString()); ;
+            Type type = str.GetType();
+            var mymethod =  type.GetMethod("op_Equality");//   op_Equality
+            var ret = mymethod.Invoke(null,new object[] { "hell9",str });
+            ViewData["ret"] = ret;
+            foreach (var method in type.GetMethods()) {
+                if (method.Name.IndexOf("Equ") >= 0) { 
+                _logger.LogInformation(method.Name);
+                _logger.LogInformation(method.IsPublic.ToString());
+                }
+            }
+            return View();
+        }
+        [HttpGet]
+        public IActionResult SelectManyTest()
+        {
+            List<Person> personList = new List<Person>
+            {
+                new Person
+                {
+                    Name = "P1", Age = 18, Gender = "Male",
+                    Dogs = new Dog[]
+                    {
+                        new Dog { Name = "D1" },
+                        new Dog { Name = "D2" }
+                    }
+                },
+                new Person
+                {
+                    Name = "P2", Age = 19, Gender = "Male",
+                    Dogs = new Dog[]
+                    {
+                        new Dog { Name = "D3" }
+                    }
+                },
+                new Person
+                {
+                    Name = "P3", Age = 17,Gender = "Female",
+                    Dogs = new Dog[]
+                    {
+                        new Dog { Name = "D4" },
+                        new Dog { Name = "D5" },
+                        new Dog { Name = "D6" }
+                    }
+                }
+            };
+            var dogs = personList.SelectMany(p => p.Dogs);
+            foreach (var dog in dogs)
+            {
+                Console.WriteLine(dog.Name);
+            }
+            return Ok();
+        }
+    }
+    public class Person
+    {
+        public string Name { set; get; }
+        public int Age { set; get; }
+        public string Gender { set; get; }
+        public Dog[] Dogs { set; get; }
+    }
+    public class Dog
+    {
+        public string Name { set; get; }
     }
 }

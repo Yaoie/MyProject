@@ -3,7 +3,7 @@
     "WebApplication1": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "https://localhost:7102/Home/CustomerTag",
+      "launchUrl": "https://localhost:7102/Home/SelectManyTest",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
