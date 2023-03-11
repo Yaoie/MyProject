@@ -88,6 +88,11 @@ namespace WebApplication1.Controllers
             return View();
         }
         [HttpGet]
+        public IActionResult FontAwesome()
+        {
+            return View();
+        }
+            [HttpGet]
         public IActionResult SelectManyTest()
         {
             List<Person> personList = new List<Person>

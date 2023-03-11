@@ -3,7 +3,7 @@
     "WebApplication1": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "https://localhost:7102/Home/SelectManyTest",
+      "launchUrl": "https://localhost:7102/Home/FontAwesome",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
