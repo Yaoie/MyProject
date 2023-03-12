@@ -1,4 +1,4 @@
-﻿using DAL;
+using DAL;
 using DAL.Model;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -18,26 +18,25 @@ services.AddDbContext<SchoolContext>(opt => {
     string connStr = builder.Configuration.GetConnectionString("SchoolContext");
     opt.UseSqlServer(connStr);
 });
-services.AddDataProtection();
-services.AddIdentityCore<User>(options =>
-{
-    options.Password.RequireDigit = false;
-    options.Password.RequireLowercase = false;
-    options.Password.RequireNonAlphanumeric = false;
-    options.Password.RequireUppercase = false;
-    options.Password.RequiredLength = 6;
-    options.Tokens.PasswordResetTokenProvider = TokenOptions.DefaultEmailProvider;
-    options.Tokens.EmailConfirmationTokenProvider = TokenOptions.DefaultEmailProvider;
-});
+
+//builder.Services.AddDbContext<SchoolContext>(options =>
+//    options.UseSqlServer(connectionString));
+
+//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+//    .AddEntityFrameworkStores<SchoolContext>();
+//services.AddDataProtection();
+services.AddIdentity<User,SysRole>();
 var idBuilder = new IdentityBuilder(typeof(User), typeof(SysRole), services);
 idBuilder.AddEntityFrameworkStores<SchoolContext>()
     .AddDefaultTokenProviders()
     .AddRoleManager<RoleManager<SysRole>>()
     .AddUserManager<UserManager<User>>();
+    
 
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 builder.Services.AddMvc().AddRazorRuntimeCompilation();
+/*
 //builder.Services.AddDefaultIdentity<User>();
 //获取JWT参数，并注入到服务容器
 var jwtConfig = new JWTConfig();
@@ -56,13 +55,14 @@ builder.Services
         opt.RequireHttpsMetadata = false;
         opt.TokenValidationParameters = JwtToken.CreateTokenValidationParameters(jwtConfig);
     });
-
+*/
 var app = builder.Build();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 //使用身份认证和授权的中间件
 app.UseAuthentication();
 app.UseAuthorization();
+/*
 #region 中间件
 
 app.MapGet("/hellosystem", (ILogger<Program> logger, HttpContext context) =>
@@ -122,6 +122,7 @@ app.MapPost("/login", [AllowAnonymous] (ILogger<Program> logger, LoginModel logi
     }
 });
 #endregion
+*/
 app.MapDefaultControllerRoute();
 app.MapRazorPages();
 app.Run();
