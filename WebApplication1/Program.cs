@@ -1,15 +1,44 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using DAL;
+using DAL.Model;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder();
+
+IServiceCollection services = builder.Services;
+services.AddDbContext<SchoolContext>(opt => {
+    string connStr = builder.Configuration.GetConnectionString("SchoolContext");
+    opt.UseSqlServer(connStr);
+});
+services.AddDataProtection();
+services.AddIdentityCore<User>(options =>
+{
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequiredLength = 6;
+    options.Tokens.PasswordResetTokenProvider = TokenOptions.DefaultEmailProvider;
+    options.Tokens.EmailConfirmationTokenProvider = TokenOptions.DefaultEmailProvider;
+});
+var idBuilder = new IdentityBuilder(typeof(User), typeof(SysRole), services);
+idBuilder.AddEntityFrameworkStores<SchoolContext>()
+    .AddDefaultTokenProviders()
+    .AddRoleManager<RoleManager<SysRole>>()
+    .AddUserManager<UserManager<User>>();
+
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
 builder.Services.AddMvc().AddRazorRuntimeCompilation();
+//builder.Services.AddDefaultIdentity<User>();
 //获取JWT参数，并注入到服务容器
 var jwtConfig = new JWTConfig();
 builder.Configuration.GetSection("JWT").Bind(jwtConfig);

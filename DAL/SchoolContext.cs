@@ -1,4 +1,6 @@
 ﻿using DAL.Model;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class SchoolContext:DbContext
+    public class SchoolContext:IdentityDbContext<User, SysRole, int>
     {
         public SchoolContext(DbContextOptions<SchoolContext> options)
            : base(options)
