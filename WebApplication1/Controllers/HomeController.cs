@@ -90,6 +90,7 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public IActionResult FontAwesome()
         {
+            ViewBag.UserName = User.Identity?.Name;
             return View();
         }
             [HttpGet]

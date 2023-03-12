@@ -13,25 +13,20 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder();
 
+builder.Services.AddInfrastructureServices(builder.Configuration);
+
 IServiceCollection services = builder.Services;
 services.AddDbContext<SchoolContext>(opt => {
     string connStr = builder.Configuration.GetConnectionString("SchoolContext");
     opt.UseSqlServer(connStr);
 });
-
-//builder.Services.AddDbContext<SchoolContext>(options =>
-//    options.UseSqlServer(connectionString));
-
-//builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-//    .AddEntityFrameworkStores<SchoolContext>();
-//services.AddDataProtection();
-services.AddIdentity<User,SysRole>();
+services.AddIdentity<User,SysRole>();// AddIdentityCore 仅注册 UserManager
 var idBuilder = new IdentityBuilder(typeof(User), typeof(SysRole), services);
 idBuilder.AddEntityFrameworkStores<SchoolContext>()
     .AddDefaultTokenProviders()
     .AddRoleManager<RoleManager<SysRole>>()
     .AddUserManager<UserManager<User>>();
-    
+
 
 builder.Services.AddRazorPages();
 builder.Services.AddControllersWithViews();
@@ -57,6 +52,26 @@ builder.Services
     });
 */
 var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseHsts();
+}
+else
+{
+    app.UseDeveloperExceptionPage();
+
+    using var scope = app.Services.CreateScope();
+    var initializer = scope.ServiceProvider.GetRequiredService<DbInitializer>();
+    await initializer.InitialiseAsync();
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
+    await initializer.SeedAsync(userManager);
+}
+
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 //使用身份认证和授权的中间件
