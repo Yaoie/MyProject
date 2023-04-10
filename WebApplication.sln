@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodeGenerator", "CodeGenera
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{35F42C2E-4064-48F9-B642-04F414748BD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{0A5470FE-D555-44BB-9EE4-942B2EEFB325}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{0A5470FE-D555-44BB-9EE4-942B2EEFB325}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contract", "Contract\Contract.csproj", "{4D0DB3CC-A5DB-463A-8DA1-681499831EF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{0A5470FE-D555-44BB-9EE4-942B2EEFB325}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A5470FE-D555-44BB-9EE4-942B2EEFB325}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A5470FE-D555-44BB-9EE4-942B2EEFB325}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D0DB3CC-A5DB-463A-8DA1-681499831EF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D0DB3CC-A5DB-463A-8DA1-681499831EF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D0DB3CC-A5DB-463A-8DA1-681499831EF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D0DB3CC-A5DB-463A-8DA1-681499831EF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
