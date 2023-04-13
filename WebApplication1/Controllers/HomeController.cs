@@ -1,4 +1,5 @@
 ﻿using Common;
+using Contract.ServicesInterface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
@@ -10,14 +11,16 @@ namespace WebApplication1.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IDecorate _decorate;
+        public HomeController(ILogger<HomeController> logger, IDecorate decorate)
         {
             _logger = logger;
+            _decorate = decorate;
         }
 
         public IActionResult Index()
         {
+            _decorate.Do();
             return View();
         }
         public IActionResult D3()

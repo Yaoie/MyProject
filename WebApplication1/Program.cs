@@ -1,16 +1,24 @@
+using BLL.Services;
+using Contract.ServicesInterface;
 using DAL;
 using DAL.Model;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
-using System;
-using System.Data;
+using SimpleInjector;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+
+
+
+
+// 1. Create a new Simple Injector container
+var container = new Container();
+
+
 
 var logConfig = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
 //Initialize Logger    
@@ -24,7 +32,8 @@ Log.Information("Starting web application");
     builder.Services.AddInfrastructureServices(builder.Configuration);
 
     IServiceCollection services = builder.Services;
-    services.AddDbContext<SchoolContext>(opt =>
+
+services.AddDbContext<SchoolContext>(opt =>
     {
         string connStr = builder.Configuration.GetConnectionString("SchoolContext");
         opt.UseSqlServer(connStr);
@@ -40,30 +49,67 @@ Log.Information("Starting web application");
     builder.Services.AddRazorPages();
     builder.Services.AddControllersWithViews();
     builder.Services.AddMvc().AddRazorRuntimeCompilation();
-    /*
-    //builder.Services.AddDefaultIdentity<User>();
-    //获取JWT参数，并注入到服务容器
-    var jwtConfig = new JWTConfig();
-    builder.Configuration.GetSection("JWT").Bind(jwtConfig);
-    builder.Services.AddSingleton(jwtConfig);
-    //添加JJWT方式的身份认证和授权，
-    builder.Services
-        .AddAuthorization()
-        .AddAuthentication(options =>
-        {
-            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-        })
-        .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, opt =>
-        {
-            opt.RequireHttpsMetadata = false;
-            opt.TokenValidationParameters = JwtToken.CreateTokenValidationParameters(jwtConfig);
-        });
-    */
-    var app = builder.Build();
 
-    // Configure the HTTP request pipeline.
-    if (!app.Environment.IsDevelopment())
+    // Sets up the basic configuration that for integrating Simple Injector with
+    // ASP.NET Core by setting the DefaultScopedLifestyle, and setting up auto
+    // cross wiring.
+    services.AddSimpleInjector(container, options =>
+    {
+        // AddAspNetCore() wraps web requests in a Simple Injector scope and
+        // allows request-scoped framework services to be resolved.
+        options.AddAspNetCore()
+
+            // Ensure activation of a specific framework type to be created by
+            // Simple Injector instead of the built-in configuration system.
+            // All calls are optional. You can enable what you need. For instance,
+            // ViewComponents, PageModels, and TagHelpers are not needed when you
+            // build a Web API.
+            .AddControllerActivation()
+            .AddViewComponentActivation()
+            .AddPageModelActivation()
+            .AddTagHelperActivation();
+
+        // Optionally, allow application components to depend on the non-generic
+        // ILogger (Microsoft.Extensions.Logging) or IStringLocalizer
+        // (Microsoft.Extensions.Localization) abstractions.
+        options.AddLogging();
+        //options.AddLocalization();
+      
+    });
+    // 2. Configure the container (register)
+    // See below for more configuration examples
+    container.Register<IDecorate, ConcreteDecorate>(Lifestyle.Scoped);
+    container.RegisterDecorator<IDecorate, ConcreteDecorate1>(Lifestyle.Scoped);
+    container.RegisterDecorator<IDecorate, ConcreteDecorate2>(Lifestyle.Scoped);
+    //builder.Services.AddSimpleInjector(container); 
+
+/*
+//builder.Services.AddDefaultIdentity<User>();
+//获取JWT参数，并注入到服务容器
+var jwtConfig = new JWTConfig();
+builder.Configuration.GetSection("JWT").Bind(jwtConfig);
+builder.Services.AddSingleton(jwtConfig);
+//添加JJWT方式的身份认证和授权，
+builder.Services
+    .AddAuthorization()
+    .AddAuthentication(options =>
+    {
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+    .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, opt =>
+    {
+        opt.RequireHttpsMetadata = false;
+        opt.TokenValidationParameters = JwtToken.CreateTokenValidationParameters(jwtConfig);
+    });
+*/
+var app = builder.Build();
+app.Services.UseSimpleInjector(container);
+// 3. Verify the container's configuration.
+container.Verify();
+
+// Configure the HTTP request pipeline.
+if (!app.Environment.IsDevelopment())
     {
         app.UseExceptionHandler("/Home/Error");
         // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
