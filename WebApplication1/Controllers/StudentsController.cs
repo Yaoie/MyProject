@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DAL;
 using DAL.Model;
+using System.Linq.Expressions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApplication1.Controllers
 {
@@ -32,7 +34,8 @@ namespace WebApplication1.Controllers
             {
                 return NotFound();
             }
-
+            Func<Student, bool> expression = b => b.ID == 1;
+            var list1 = _context.Students.Where(expression).ToList();
             var student = await _context.Students
                 .FirstOrDefaultAsync(m => m.ID == id);
             if (student == null)
@@ -42,7 +45,14 @@ namespace WebApplication1.Controllers
 
             return View(student);
         }
+        [AllowAnonymous]
+        public async Task<IActionResult> Test()
+        {
+            Func<Student, bool> expression = b => b.ID == 1;
+            var list1 = _context.Students.Where(expression).ToList();
 
+            return new JsonResult(list1);
+        }
         // GET: Students/Create
         public IActionResult Create()
         {

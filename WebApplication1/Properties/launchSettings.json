@@ -3,7 +3,7 @@
     "WebApplication1": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "https://localhost:7102/cssdev/ch04/listing-4.2.html",
+      "launchUrl": "https://localhost:7102/cssdev/ch05/listing-5.2.html",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

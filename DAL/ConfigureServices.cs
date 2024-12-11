@@ -19,9 +19,11 @@ public static class ConfigureServices
                     builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));*/
             services.AddDbContext<SchoolContext>(options =>
             {
-                options.EnableSensitiveDataLogging(false);
+                //options.EnableSensitiveDataLogging(false);
+                options.LogTo(Console.WriteLine);
                 options.UseSqlServer(configuration.GetConnectionString("SchoolContext"),
                     x => x.EnableRetryOnFailure());
+                
             });
 
         /*services.AddScoped(provider => provider.GetRequiredService<ApplicationDbContext>());*/
